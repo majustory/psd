@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div align="center">
+<H2> 자료실 저장하기 <a href="/index.html">(처음으로)</a> </H2>
+
+<table border=1>
+<tr><td>번호</td><td>이름</td><td>파일명</td><td>날짜</td><td>사진</td></tr>
+
+<tr   th:each="m : ${li}">
+<td><a th:href="@{/content.do(idx=${m.idx})}"  th:text="${m.idx}"></a></td>
+<td th:text="${m.sname}"></td><td th:text="${m.img}"></td>
+<td th:text="${#dates.format(m.today, 'yyyy-MM-dd')}" ></td>
+<td><img th:src="@{./img/}+${m.img}" width=50 height=50 /></td>
+
+</tr>
+
+</table>
+
+</div>
+</body>
+</html>

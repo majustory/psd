@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script>
+ function listK(){
+	 alert("목록보기");
+	 location.href="list.do";
+ }
+
+ function deleteK(idx){
+	 alert(idx);
+	 location.href="delete.do?idx="+idx;
+ }
+ 
+</script>
+</head>
+<body>
+<br><br><br>
+<div align="center">
+<h2>  자료실 폼만들기 </h2>
+<form action=updateOK.do  method=post  enctype="multipart/form-data">
+<table border=1>
+  <tr> <td colspan=2 align="center">
+       <img th:src="@{./img/}+${m.img}" width=200 height=100 />    </td> </tr>
+  <tr> <td>번호  </td> <td> <input  type=text name=idx  th:value="${m.idx}" >  </td> </tr>
+  <tr> <td>이름  </td> <td> <input  type=text name=sname  th:value="${m.sname}" >  </td> </tr>
+  <tr> <td>사진  </td> <td> <input  type=file name=updateFile>   </td> </tr>
+  <tr> <td>날짜  </td> <td> [[${#dates.format(m.today, 'yyyy-MM-dd')}]]  </td> </tr>
+  <tr> <td colspan=2 align="center"> 
+           <input  type=submit value="수정하기" > 
+           <input  type=button value="목록보기" onClick="listK()"> 
+           <input  type=button value="삭제하기" th:onClick="deleteK([[${m.idx}]])" > 
+       </td>  </tr>
+
+</table>
+
+</form>
+</div>
+</body>
+</html>
